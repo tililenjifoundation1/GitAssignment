@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assigment of Git and of JS</title>
+    <style>
+        body{
+            background-color: blueviolet;
+        }
+        h2{
+        color:rgb(14, 209, 14);
+        }
+        .hey{
+            align-items: center;
+            font-size: large;
+        }
+        .there{
+            align-items: center;
+        font-size: large;
+        }
+    </style>
+</head>
+<head>
+<p class="hey">
+ This outlines how to calculate the result of any given condition using the quadratic formula.
+ Using X^2+X+C=0
+</p>   
+<p class="there">
+    We too are going to calculate the grading system for students of Mulungushi University
+</p>
+</head>
+<body >
+    <h2>This is how to calculate the quadratic equation</h2>
+    <label>a: <input type="number" id="a"></label>
+    <lable>b:<input type="number" id="b"> </lable>
+    <label>c: <input type="number" id="c"></label>
+    <button onclick="solveQuadratic()">Solve</button>
+    <p id="quadraticResult"></p>
+
+    <h2>Grading System</h2>
+    <label>Score(0-100):<input type="number" id="score"></label>
+    <button onclick="calculateGrade()">Grade</button>
+<button onclick="resetFields()">Reset</button>
+<p id="gradeResult"></p>
+
+<script>
+    function solveQuadratic(){
+        const a= parseFloat(document.getElementById('a').value);
+        const b= parseFloat(document.getElementById('b').value);
+        const c= parseFloat(document.getElementById('c').value);
+        const result=document.getElementById('quadraticResult');
+
+        const discriminant = b*b-4*a*c;
+        let output='Equation: ${a}x*x + ${b}x + ${c}=0<br>';
+        output+='Discriminant (b*b-4ac): ${discriminant}<br>';
+
+        if(discriminant>0){
+            const root1=((-b + Math.sqrt(discriminant))/(2*a)).toFixed(2);
+             const root2=((-b - Math.sqrt(discriminant)))/(2*a).toFixed(2);
+             output+='Two real roots: X1=${root1}, X2= ${root2}';
+        }
+        else{
+            const realPart = (-b/ (2*a)).toFixed(2);
+            const imagPart = (Math.sqrt(-discriminant)/(2*a)).toFixed(2);
+            output += 'Complex roots: X1= ${realPart}+${imagPart}i, X*X=${realPart} - ${imagPart}i';
+        }
+        function calculateGrade(){
+            const score = parseInt(document.getElementById('score').value);
+            const result = document.getElementById('gradeResult');
+            let grade="";
+
+            if(score >=86 && score <=100) grade = "A+"
+            else if (score>=76) grade="A"
+             else if (score>=68) grade="B+"
+             else if (score>=60) grade="B"
+             else if (score>=55) grade="C+"
+             else if (score>=50) grade="C"
+             else if (score>=40) grade="D+"
+             else if (score>=0) grade="D"
+             else grade="invalid score";
+
+             result.innerHTML='Letter Grade: ${grade}';   
+        }
+        function resetFields(){
+            document.getElementById('a').value="";
+             document.getElementById('b').value="";
+              document.getElementById('c').value="";
+               document.getElementById('score').value="";
+                document.getElementById('quadraticResult').innerHTML="";
+                 document.getElementById('gradeResult').innerHTML="";
+        }
+    }
+</script>
+</body>
+
+</html>
